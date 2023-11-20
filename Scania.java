@@ -1,21 +1,29 @@
 import java.awt.*;
 
 public class Scania extends Truck {
+    double platform = 0;
+
 
     public Scania(Direction direction, double x, double y) {
-        super("Scania", 2, 4, 0, Color.RED, Direction.SOUTH , x, y, true);
+        super("Scania", 2, 4, 0, Color.RED, Direction.SOUTH , x, y);
     }
 
-    public boolean getPlatformAngle() {
-        return super.isRampUp();
+    public double getPlatformAngle() {
+        return platform;
     }
 
-    public void raisePlatform() {
-        super.raiseRamp();
+    public void raisePlatform(double degrees) {
+
+        if (getCurrentSpeed() == 0) {
+            platform = Math.min(platform + degrees, 70);
+        }
     }
 
-    public void lowerPlatform() {
-        super.lowerRamp();
+    public void lowerPlatform(double degrees) {
+
+        if (getCurrentSpeed() == 0) {
+            platform = Math.max(platform - degrees, 0);
+        }
     }
 
     public double speedFactor() {
@@ -25,7 +33,7 @@ public class Scania extends Truck {
 
     @Override
     public void move() {
-        if (getPlatformAngle() == false) {
+        if (getPlatformAngle() == 0) {
             super.move();
         }
     }

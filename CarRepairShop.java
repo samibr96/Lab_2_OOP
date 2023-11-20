@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public class CarRepairShop {
+public class CarRepairShop <T extends Vehicle> {
 
-    private List<Vehicle> cars;
+    private ArrayList<T> cars;
     public double x;
     public double y;
     private int maxNrOfCas;
@@ -20,15 +19,16 @@ public class CarRepairShop {
         return cars.size() >= maxNrOfCas;
     }
 
-    public void carload (Vehicle car)
+    public void carload (T car)
     {
         if(cars.size() < maxNrOfCas){
             cars.add(car);
         }
     }
 
-    public void carUnload (Vehicle car)
+    public void carUnload (T car)
     {
+
         cars.remove(car);
     }
 }

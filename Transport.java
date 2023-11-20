@@ -9,8 +9,9 @@ public class Transport extends Truck {
     public double y;
     private final int maxCars = 5;
 
+
     public Transport(Direction direction, double x, double y) {
-        super("Truck D50SE-5", 2, 300, 2, Color.ORANGE, direction , x, y, false);
+        super("Truck D50SE-5", 2, 300, 2, Color.ORANGE, direction , x, y);
 
         this.cars = new ArrayList<>();
     }
@@ -20,13 +21,12 @@ public class Transport extends Truck {
     }
 
 
-    public boolean getPlatformAngle() {
-        return super.isRampUp();
-    }
 
     public void raisePlatform() {
         super.raiseRamp();
     }
+
+
 
     public void lowerPlatform() {
         super.lowerRamp();
@@ -34,7 +34,7 @@ public class Transport extends Truck {
 
 
     public void loadCar(Vehicle car) {
-        if (!isRampUp()) {
+        if (!platform) {
             // 3.
             double variableX = car.getX();
             double variableY = car.getY();
@@ -53,24 +53,16 @@ public class Transport extends Truck {
 
     public void unloadCar(Vehicle car)
     {
-        if (!isRampUp()) {
+        if (!platform) {
             // 5. Cars must be unloaded in reverse order from how they were loaded.
 
-            if (!cars.isEmpty()) {
-                Vehicle lastCar = cars.get(cars.size() - 1);
-
-                double variableX = car.getX();
-                double variableY = car.getY();
-
-                if (getX() - 10 < variableX && variableX < getX() + 10 &&
-                        getY() - 10 < variableY && variableY < getY() + 10 &&
-                        lastCar.getCurrentSpeed() == 0) {
+            if (!cars.isEmpty() && cars.size() < maxCars) {
 
                     cars.remove(cars.size() - 1);
                 }
             }
         }
-    }
+
 
     @Override
     public void move() {

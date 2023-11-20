@@ -17,9 +17,13 @@ public class TransportTest {
         transport.loadCar(volvo240);
         transport.loadCar(saab95);
 
+
+        assertEquals(2, transport.getCars().size());
         assertEquals(volvo240, transport.getCars().get(0));
         assertEquals(saab95, transport.getCars().get(1));
+
     }
+
 
     @Test
     public void testUnloadCar() {
@@ -27,6 +31,7 @@ public class TransportTest {
 
         Volvo240 volvo240 = new Volvo240(Direction.SOUTH, 0, 0);
         Saab95 saab95 = new Saab95(Direction.WEST, 0, 0);
+
 
         transport.lowerPlatform();
 
@@ -36,6 +41,8 @@ public class TransportTest {
         transport.unloadCar(saab95);
 
         assertEquals(volvo240, transport.getCars().get(0));
+        assertEquals(1, transport.getCars().size());
+
     }
 
     @Test

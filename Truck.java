@@ -2,31 +2,27 @@ import java.awt.*;
 
 public abstract class Truck extends Vehicle {
 
-    private boolean platformUp;
+    public boolean platform;
 
-    public Truck(String modelName, int nrDoors, double enginePower, double currentSpeed, Color color, Direction direction , double x, double y, boolean liftBed) {
+    public Truck(String modelName, int nrDoors, double enginePower, double currentSpeed, Color color, Direction direction , double x, double y) {
         super(modelName, nrDoors, enginePower, currentSpeed, color, direction , x, y);
-        this.platformUp = true;
+        this.platform = true;
     }
 
     public void raiseRamp() {
         if (getCurrentSpeed() == 0) {
-            platformUp = true;
+            platform = true;
         }
     }
 
     public void lowerRamp() {
         if (getCurrentSpeed() == 0) {
-            platformUp = false;
+            platform = false;
         }
     }
 
-    public boolean isRampUp() {
-        return platformUp;
-    }
-
     public void move() {
-        if (platformUp) {
+        if (!platform) {
             super.move();
         }
     }

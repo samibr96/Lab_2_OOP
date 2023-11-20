@@ -11,14 +11,23 @@ public class ScaniaTest {
     }
 
     @Test
-    public void testScaniaPlatformAngle() {
+    public void testRaisePlatform() {
         Scania scaniatest = new Scania(Direction.WEST, 0,0);
 
-        scaniatest.lowerPlatform();
-        assertEquals(false, scaniatest.getPlatformAngle());
 
-        scaniatest.raisePlatform();
-        assertEquals(true, scaniatest.getPlatformAngle());
+        scaniatest.raisePlatform(69);
+        assertEquals(69, scaniatest.getPlatformAngle(),0);
+
+    }
+
+    @Test
+    public void testLowerPlatform() {
+        Scania scaniatest = new Scania(Direction.WEST, 0,0);
+        scaniatest.raisePlatform(70);
+
+        scaniatest.lowerPlatform(20);
+
+        assertEquals(50, scaniatest.getPlatformAngle(),0);
 
     }
 
@@ -26,7 +35,7 @@ public class ScaniaTest {
     @Test
     public void testScaniaMoveUp() {
         Scania scaniatest = new Scania(Direction.SOUTH, 0, 0);
-        scaniatest.raisePlatform();
+        scaniatest.raisePlatform(70);
 
         scaniatest.startEngine();
         scaniatest.move();
@@ -36,14 +45,17 @@ public class ScaniaTest {
 
     @Test
     public void testScaniaMoveDown() {
-        Scania scaniatest = new Scania(Direction.SOUTH, 0, 50);
-        scaniatest.lowerPlatform();
+        Scania scaniatest = new Scania(Direction.SOUTH, 0, 0);
+        scaniatest.raisePlatform(70);
+        scaniatest.lowerPlatform(70);
+
 
         scaniatest.startEngine();
         scaniatest.move();
 
-
-        assertEquals(50.1, scaniatest.getY(), 0);
+        assertEquals(0, scaniatest.getY(), 0);
     }
+
+
 
 }

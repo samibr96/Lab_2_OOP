@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CarRepairShop <T extends Vehicle> {
 
@@ -15,6 +16,8 @@ public class CarRepairShop <T extends Vehicle> {
         this.y = y;
     }
 
+
+
     public boolean isWorkShopFull() {
         return cars.size() >= maxNrOfCas;
     }
@@ -30,5 +33,9 @@ public class CarRepairShop <T extends Vehicle> {
     {
 
         cars.remove(car);
+    }
+
+    public List<T> getCars() {
+        return cars;
     }
 }

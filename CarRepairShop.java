@@ -4,6 +4,7 @@ import java.util.List;
 public class CarRepairShop <T extends Vehicle> {
 
     private ArrayList<T> cars;
+
     public double x;
     public double y;
     private int maxNrOfCas;
@@ -31,7 +32,6 @@ public class CarRepairShop <T extends Vehicle> {
 
     public void carUnload (T car)
     {
-
         cars.remove(car);
     }
 

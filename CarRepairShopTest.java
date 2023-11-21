@@ -53,4 +53,23 @@ public class CarRepairShopTest {
         assertEquals(1, carRepairShop.getCars().size());
 
     }
+
+    @Test
+    public void testCarLoadVolvo() {
+        CarRepairShop<Volvo240> volvoList = new CarRepairShop<>(5, 0, 0);
+
+        Volvo240 volvo240Red = new Volvo240(Direction.SOUTH, 0, 0);
+        Volvo240 volvo240Blue = new Volvo240(Direction.SOUTH, 0, 0);
+
+        Saab95 saab95 = new Saab95(Direction.WEST, 0, 0);
+
+        volvoList.carload(volvo240Red);
+        volvoList.carload(volvo240Blue);
+
+        // volvoList.carload(saab95); Det kan inte ta saab bilar, för att CarRepairShop är bara för volvo
+
+        assertEquals(2, volvoList.getCars().size());
+        assertEquals(volvo240Red, volvoList.getCars().get(0));
+        assertEquals(volvo240Blue, volvoList.getCars().get(1));
+    }
 }

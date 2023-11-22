@@ -8,6 +8,7 @@ public class Saab95 extends Vehicle
 
     public Saab95(Direction direction , double x, double y) {
         super("Saab95", 10, 4, 0, Color.BLUE, Direction.SOUTH  , x, y);
+        turbo = new Turbo();
 
     }
     public boolean isTurboOn() {
